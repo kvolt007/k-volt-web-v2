@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kvolt007.github.io/k-volt-web-v2/sitemap.xml
