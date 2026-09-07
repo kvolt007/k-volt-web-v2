@@ -1,0 +1,8 @@
+{
+  "name": "K-Volt - Electricidad y Climatización",
+  "short_name": "K-Volt",
+  "start_url": "/k-volt-web-v2/",
+  "display": "standalone",
+  "background_color": "#0A0A0A",
+  "theme_color": "#0A0A0A"
+}
