@@ -487,6 +487,66 @@ footer{padding:45px 5vw;display:flex;justify-content:space-between;gap:20px;colo
 .energy-footer{position:absolute;left:26px;right:26px;bottom:14px;display:flex;justify-content:space-between;color:#5f5f5f;font-size:.56rem;letter-spacing:.14em;z-index:3}.energy-flash{position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 42% 38%,rgba(255,204,0,.24),transparent 48%);opacity:0}.energy-flash.on{animation:heroEnergyFlash .5s ease}
 @keyframes moveEnergyWave{from{transform:translateX(0)}to{transform:translateX(-33.333%)}}@keyframes heroEnergyFlash{0%{opacity:0}38%{opacity:.8}100%{opacity:0}}
 
+
+.method-title{color:#8a8a8a;font-size:.72rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase}
+.coverage{
+  padding:110px 5vw;
+  display:grid;
+  grid-template-columns:.92fr 1.08fr;
+  gap:70px;
+  align-items:center;
+  background:#0b0b0b;
+  border-top:1px solid rgba(255,255,255,.06);
+}
+.coverage-kicker{margin:0 0 14px;color:var(--y);font-size:.7rem;font-weight:900;letter-spacing:.18em}
+.coverage h2{margin:0;font-size:clamp(3rem,6vw,6.4rem);line-height:.9;letter-spacing:-.06em}
+.coverage-copy>p:not(.coverage-kicker){max-width:640px;color:#999;line-height:1.65}
+.coverage-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}
+.coverage-tags span{
+  padding:9px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.10);
+  background:#111;color:#aaa;font-size:.72rem;transition:.25s ease;
+}
+.coverage-tags span:hover{border-color:rgba(255,204,0,.45);color:var(--y)}
+.coverage-radar{
+  position:relative;min-height:620px;border-radius:28px;overflow:hidden;
+  border:1px solid rgba(255,255,255,.08);
+  background:radial-gradient(circle at center,rgba(255,204,0,.08),transparent 42%),#080808;
+}
+.radar-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:38px 38px}
+.radar-ring{position:absolute;left:50%;top:50%;border:1px solid rgba(255,204,0,.18);border-radius:50%;transform:translate(-50%,-50%)}
+.ring-1{width:180px;height:180px}.ring-2{width:340px;height:340px}.ring-3{width:510px;height:510px}
+.radar-core{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:118px;height:118px;border-radius:50%;display:grid;place-items:center;align-content:center;
+  background:#0d0d0d;border:1px solid rgba(255,204,0,.45);box-shadow:0 0 50px rgba(255,204,0,.12);z-index:4;
+}
+.radar-core i{width:9px;height:9px;border-radius:50%;background:var(--y);box-shadow:0 0 15px var(--y);margin-bottom:8px}
+.radar-core strong{font-size:.82rem;letter-spacing:.12em}.radar-core small{margin-top:4px;color:#707070;font-size:.54rem;letter-spacing:.18em}
+.radar-sweep{
+  position:absolute;left:50%;top:50%;width:255px;height:255px;transform-origin:0 0;
+  background:conic-gradient(from 0deg,rgba(255,204,0,.20),transparent 38deg);
+  animation:radarSweep 5s linear infinite;z-index:2;
+}
+.coverage-node{
+  position:absolute;z-index:5;padding:8px 10px;border-radius:999px;background:rgba(15,15,15,.92);
+  border:1px solid rgba(255,204,0,.24);color:#bdbdbd;font-size:.66rem;letter-spacing:.04em;
+  box-shadow:0 8px 26px rgba(0,0,0,.3);
+}
+.coverage-node:before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--y);box-shadow:0 0 10px var(--y);margin-right:7px}
+.n1{left:14%;top:29%}.n2{left:19%;top:63%}.n3{right:12%;top:18%}.n4{right:18%;top:37%}.n5{right:15%;top:61%}.n6{right:27%;bottom:12%}.n7{left:12%;bottom:17%}.n8{right:8%;bottom:31%}
+@keyframes radarSweep{to{transform:rotate(360deg)}}
+@media(max-width:900px){
+  .coverage{grid-template-columns:1fr;padding-left:18px;padding-right:18px}
+  .coverage-radar{min-height:560px}
+}
+@media(max-width:600px){
+  .coverage{padding-top:80px;padding-bottom:80px;gap:38px}
+  .coverage-radar{min-height:470px}
+  .ring-1{width:135px;height:135px}.ring-2{width:260px;height:260px}.ring-3{width:390px;height:390px}
+  .radar-sweep{width:195px;height:195px}
+  .coverage-node{font-size:.58rem;padding:7px 8px}
+}
+
 </style>
 </head>
 <body>
@@ -510,7 +570,7 @@ footer{padding:45px 5vw;display:flex;justify-content:space-between;gap:20px;colo
 
 <header>
   <a class="logo" href="#top"><span class="mark">K</span><span>K-VOLT</span></a>
-  <nav><a href="#hogar">Hogar</a><a href="#obras">Obras nuevas</a><a href="#empresa">Empresa</a><a href="#clima">Climatización</a><a href="#contacto">Contacto</a></nav>
+  <nav><a href="#hogar">Hogar</a><a href="#obras">Obras nuevas</a><a href="#empresa">Empresa</a><a href="#clima">Climatización</a><a href="#cobertura">Cobertura</a><a href="#contacto">Contacto</a></nav>
   <a class="pill" href="#contacto">Hablemos</a>
 </header>
 
@@ -550,11 +610,11 @@ footer{padding:45px 5vw;display:flex;justify-content:space-between;gap:20px;colo
 <section class="statement reveal"><p>No vendemos solamente instalaciones eléctricas.<strong>Resolvemos problemas que frenan tu casa, tu obra o tu empresa.</strong></p></section>
 
 <section class="pad worlds">
-  <div class="label">01 / TRES UNIVERSOS</div>
+  
 
   <article class="world home reveal" id="hogar">
       <div class="worldcopy">
-        <small>01 / HOGAR</small>
+        <small>HOGAR</small>
         <h2>Electricidad que acompaña tu casa.</h2>
         <p>Fallas, tableros, recableado, iluminación, ampliaciones y líneas dedicadas.</p>
         <a href="#contacto">Consultar servicio →</a>
@@ -566,7 +626,7 @@ footer{padding:45px 5vw;display:flex;justify-content:space-between;gap:20px;colo
 
   <div class="new-build-integrated" id="obras">
     <div class="new-build-heading">
-      <span>HOGAR / ESPECIALIDAD</span>
+      <span>OBRAS NUEVAS</span>
       <strong>Obras nuevas</strong>
       <p>De la acometida al hogar: mirá cómo pensamos una instalación desde cero.</p>
     </div>
@@ -579,7 +639,7 @@ footer{padding:45px 5vw;display:flex;justify-content:space-between;gap:20px;colo
 
   <article class="world biz reveal" id="empresa">
       <div class="worldcopy">
-        <small>02 / EMPRESA</small>
+        <small>EMPRESA</small>
         <h2>Cuando la electricidad forma parte de la operación.</h2>
         <p>Mantenimiento, trifásica, tableros, ampliaciones y diagnóstico.</p>
         <a href="#contacto">Hablar sobre mi empresa →</a>
@@ -591,7 +651,7 @@ footer{padding:45px 5vw;display:flex;justify-content:space-between;gap:20px;colo
 
   <article class="world clima reveal" id="clima">
       <div class="worldcopy">
-        <small>03 / CLIMATIZACIÓN</small>
+        <small>CLIMATIZACIÓN</small>
         <h2>Confort térmico para el hogar.</h2>
         <p>Instalación, mantenimiento, limpieza y diagnóstico de aire acondicionado residencial.</p>
         <small>Servicio desarrollado junto a técnico especializado.</small>
@@ -604,18 +664,51 @@ footer{padding:45px 5vw;display:flex;justify-content:space-between;gap:20px;colo
 </section>
 
 <section class="pad method">
-  <div class="label">02 / MÉTODO K-VOLT</div>
+  <div class="method-title">Método K-Volt</div>
   <div class="methodrow reveal"><span>MEDIR</span><i>→</i><span>ENTENDER</span><i>→</i><span>RESOLVER</span></div>
   <p class="reveal">Menos improvisación. Más diagnóstico, explicación y orden técnico.</p>
 </section>
 
+
+<section class="coverage" id="cobertura">
+  <div class="coverage-copy reveal">
+    <p class="coverage-kicker">ZONA DE COBERTURA</p>
+    <h2>Rosario y mucho más alrededor.</h2>
+    <p>Atendemos hogares, obras, comercios y empresas en Rosario y distintas localidades de Gran Rosario. Consultanos por disponibilidad para tu zona.</p>
+    <div class="coverage-tags">
+      <span>Rosario</span><span>Granadero Baigorria</span><span>Capitán Bermúdez</span><span>Fray Luis Beltrán</span>
+      <span>San Lorenzo</span><span>Puerto General San Martín</span><span>Timbúes</span><span>Ricardone</span><span>Pueblo Andino</span>
+      <span>Funes</span><span>Roldán</span><span>Pérez</span><span>Soldini</span><span>Ibarlucea</span><span>Zavalla</span><span>Álvarez</span><span>Piñero</span><span>Acebal</span>
+      <span>Villa Gobernador Gálvez</span><span>Alvear</span><span>Pueblo Esther</span><span>General Lagos</span><span>Arroyo Seco</span><span>Fighiera</span><span>Villa Constitución</span>
+    </div>
+  </div>
+
+  <div class="coverage-radar reveal" aria-label="Visualización de cobertura K-Volt">
+    <div class="radar-grid"></div>
+    <div class="radar-ring ring-1"></div>
+    <div class="radar-ring ring-2"></div>
+    <div class="radar-ring ring-3"></div>
+    <div class="radar-sweep"></div>
+    <div class="radar-core"><i></i><strong>ROSARIO</strong><small>K-VOLT</small></div>
+
+    <span class="coverage-node n1">Funes</span>
+    <span class="coverage-node n2">Roldán</span>
+    <span class="coverage-node n3">San Lorenzo</span>
+    <span class="coverage-node n4">Baigorria</span>
+    <span class="coverage-node n5">V. G. Gálvez</span>
+    <span class="coverage-node n6">Arroyo Seco</span>
+    <span class="coverage-node n7">Pérez</span>
+    <span class="coverage-node n8">Pueblo Esther</span>
+  </div>
+</section>
+
 <section class="contact" id="contacto">
   <div class="reveal"><small>ROSARIO + GRAN ROSARIO</small><h2>Contanos qué necesitás resolver.</h2><p>Casa, obra, comercio, empresa o aire acondicionado. Mandanos una descripción y, si podés, una foto.</p></div>
-  <div class="contactbox reveal"><a href="#"><span>WhatsApp</span><strong>Escribir ahora ↗</strong></a><a href="#"><span>Teléfono</span><strong>Configurar número</strong></a><a href="#"><span>Email</span><strong>Configurar email</strong></a></div>
+  <div class="contactbox reveal"><a href="#contacto" class="pending-contact"><span>WhatsApp</span><strong>Confirmar prefijo internacional</strong></a><a href="#contacto" class="pending-contact"><span>Teléfono</span><strong>341 3 217314</strong></a><a href="mailto:contacto.kvolt@gmail.com"><span>Email</span><strong>contacto.kvolt@gmail.com</strong></a></div>
 </section>
 </main>
 
-<footer><strong>K-VOLT</strong><span>Electricidad · Obras · Empresas · Climatización residencial</span><small>Concepto V3</small></footer>
+<footer><strong>K-VOLT</strong><span>Electricidad · Obras · Empresas · Climatización residencial</span><small>Rosario · Santa Fe</small></footer>
 
 <script>
 window.addEventListener('load', () => {
