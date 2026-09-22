@@ -547,6 +547,22 @@ footer{padding:45px 5vw;display:flex;justify-content:space-between;gap:20px;colo
   .coverage-node{font-size:.58rem;padding:7px 8px}
 }
 
+
+/* Cobertura geográfica ajustada */
+.coverage-map{position:relative;min-height:620px;border-radius:30px;border:1px solid rgba(255,255,255,.08);overflow:hidden;background:radial-gradient(circle at center,rgba(255,204,0,.08),transparent 34%),#070707}
+.map-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:38px 38px}
+.map-core{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:124px;height:124px;border-radius:50%;background:#0f0f0f;border:1px solid rgba(255,204,0,.5);display:grid;place-items:center;align-content:center;z-index:4;box-shadow:0 0 45px rgba(255,204,0,.10)}
+.map-core i{width:10px;height:10px;border-radius:50%;background:var(--y);box-shadow:0 0 18px var(--y);margin-bottom:6px}.map-core strong{font-size:.92rem;letter-spacing:.13em}.map-core small{margin-top:4px;color:#6d6d6d;letter-spacing:.16em;font-size:.55rem}
+.map-node{position:absolute;z-index:5;padding:8px 12px;border-radius:999px;background:rgba(15,15,15,.92);border:1px solid rgba(255,204,0,.25);color:#d4d4d4;font-size:.68rem;box-shadow:0 8px 28px rgba(0,0,0,.30)}
+.map-node:before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--y);box-shadow:0 0 12px var(--y);margin-right:7px}
+.map-link{position:absolute;left:50%;top:50%;transform-origin:left center;height:1px;border-top:1px dashed rgba(255,204,0,.18);z-index:2}.link-north{width:220px;transform:translate(0,-50%) rotate(-66deg)}.link-west{width:220px;transform:translate(0,-50%) rotate(198deg)}.link-south{width:220px;transform:translate(0,-50%) rotate(45deg)}
+.ibarlucea{left:18%;top:12%}.pto{left:38%;top:5%}.slorenzo{left:42%;top:11%}.fray{left:44%;top:17%}.capitan{left:46%;top:23%}.baigorria{left:49%;top:29%}
+.funes{left:12%;top:34%}.roldan{left:8%;top:44%}.perez{left:21%;top:58%}.soldini{left:24%;top:69%}
+.vgg{left:58%;top:59%}.alvear{left:52%;top:71%}.pueblo{left:68%;top:66%}.glagos{left:63%;top:78%}.asec{left:57%;top:88%}
+.contactbox{grid-template-columns:1fr 1fr}
+@media(max-width:700px){.coverage-map{min-height:560px}.map-node{font-size:.60rem;padding:7px 10px}}
+@media(max-width:560px){.contactbox{grid-template-columns:1fr}.coverage-map{min-height:500px}}
+
 </style>
 </head>
 <body>
@@ -620,7 +636,7 @@ footer{padding:45px 5vw;display:flex;justify-content:space-between;gap:20px;colo
         <a href="#contacto">Consultar servicio →</a>
       </div>
       <div class="visual service-visual pure-image">
-        <img src="assets/hogar.svg" alt="Servicio eléctrico para hogares">
+        <img src="assets/hogar.jpg" alt="Servicio eléctrico para hogares">
       </div>
     </article>
 
@@ -645,7 +661,7 @@ footer{padding:45px 5vw;display:flex;justify-content:space-between;gap:20px;colo
         <a href="#contacto">Hablar sobre mi empresa →</a>
       </div>
       <div class="visual service-visual pure-image">
-        <img src="assets/empresa.svg" alt="Instalaciones y mantenimiento eléctrico para empresas">
+        <img src="assets/empresa.jpg" alt="Instalaciones y mantenimiento eléctrico para empresas">
       </div>
     </article>
 
@@ -658,7 +674,7 @@ footer{padding:45px 5vw;display:flex;justify-content:space-between;gap:20px;colo
         <a href="#contacto">Consultar por aire →</a>
       </div>
       <div class="visual service-visual pure-image">
-        <img src="assets/climatizacion.svg" alt="Climatización residencial frío y calor">
+        <img src="assets/climatizacion.jpg" alt="Climatización residencial frío y calor">
       </div>
     </article>
 </section>
@@ -673,7 +689,7 @@ footer{padding:45px 5vw;display:flex;justify-content:space-between;gap:20px;colo
 <section class="coverage" id="cobertura">
   <div class="coverage-copy reveal">
     <p class="coverage-kicker">ZONA DE COBERTURA</p>
-    <h2>Rosario y mucho más alrededor.</h2>
+    <h2>Rosario y Gran Rosario.</h2>
     <p>Atendemos hogares, obras, comercios y empresas en Rosario y distintas localidades de Gran Rosario. Consultanos por disponibilidad para tu zona.</p>
     <div class="coverage-tags">
       <span>Rosario</span><span>Granadero Baigorria</span><span>Capitán Bermúdez</span><span>Fray Luis Beltrán</span>
@@ -683,28 +699,37 @@ footer{padding:45px 5vw;display:flex;justify-content:space-between;gap:20px;colo
     </div>
   </div>
 
-  <div class="coverage-radar reveal" aria-label="Visualización de cobertura K-Volt">
-    <div class="radar-grid"></div>
-    <div class="radar-ring ring-1"></div>
-    <div class="radar-ring ring-2"></div>
-    <div class="radar-ring ring-3"></div>
-    <div class="radar-sweep"></div>
-    <div class="radar-core"><i></i><strong>ROSARIO</strong><small>K-VOLT</small></div>
+  <div class="coverage-map reveal" aria-label="Cobertura K-Volt en Rosario y Gran Rosario">
+    <div class="map-grid"></div>
+    <div class="map-core"><i></i><strong>ROSARIO</strong><small>K-VOLT</small></div>
 
-    <span class="coverage-node n1">Funes</span>
-    <span class="coverage-node n2">Roldán</span>
-    <span class="coverage-node n3">San Lorenzo</span>
-    <span class="coverage-node n4">Baigorria</span>
-    <span class="coverage-node n5">V. G. Gálvez</span>
-    <span class="coverage-node n6">Arroyo Seco</span>
-    <span class="coverage-node n7">Pérez</span>
-    <span class="coverage-node n8">Pueblo Esther</span>
+    <span class="map-node ibarlucea">Ibarlucea</span>
+    <span class="map-node pto">Puerto Gral. San Martín</span>
+    <span class="map-node slorenzo">San Lorenzo</span>
+    <span class="map-node fray">Fray L. Beltrán</span>
+    <span class="map-node capitan">Capitán Bermúdez</span>
+    <span class="map-node baigorria">Granadero Baigorria</span>
+
+    <span class="map-node funes">Funes</span>
+    <span class="map-node roldan">Roldán</span>
+    <span class="map-node perez">Pérez</span>
+    <span class="map-node soldini">Soldini</span>
+
+    <span class="map-node vgg">Villa G. Gálvez</span>
+    <span class="map-node alvear">Alvear</span>
+    <span class="map-node pueblo">Pueblo Esther</span>
+    <span class="map-node glagos">General Lagos</span>
+    <span class="map-node asec">Arroyo Seco</span>
+
+    <div class="map-link link-north"></div>
+    <div class="map-link link-west"></div>
+    <div class="map-link link-south"></div>
   </div>
 </section>
 
 <section class="contact" id="contacto">
   <div class="reveal"><small>ROSARIO + GRAN ROSARIO</small><h2>Contanos qué necesitás resolver.</h2><p>Casa, obra, comercio, empresa o aire acondicionado. Mandanos una descripción y, si podés, una foto.</p></div>
-  <div class="contactbox reveal"><a href="https://wa.me/543413217314" target="_blank" rel="noopener"><span>WhatsApp</span><strong>+54 341 3 217314 ↗</strong></a><a href="tel:+543413217314"><span>Teléfono</span><strong>+54 341 3 217314</strong></a><a href="mailto:contacto.kvolt@gmail.com"><span>Email</span><strong>contacto.kvolt@gmail.com</strong></a></div>
+  <div class="contactbox reveal"><a href="https://wa.me/543413217314" target="_blank" rel="noopener"><span>WhatsApp</span><strong>+54 341 3 217314 ↗</strong></a><a href="mailto:contacto.kvolt@gmail.com"><span>Email</span><strong>contacto.kvolt@gmail.com</strong></a></div>
 </section>
 </main>
 
