@@ -100,7 +100,7 @@ svg{width:100%;height:100%;display:block}
       <div class="legend">
         <div><span>1</span> La energía desciende desde la acometida y entra a la instalación.</div>
         <div><span>2</span> Pasa por el medidor y el tablero antes de distribuirse.</div>
-        <div><span>3</span> La planta alta y la baja quedan con una lógica visual equivalente.</div>
+        <div><span>3</span> La distribución llega de forma ordenada a los distintos ambientes de la vivienda.</div>
       </div>
     </div>
 
@@ -381,7 +381,17 @@ function startSequence(){
 }
 
 replayBtn.addEventListener('click', startSequence);
-startSequence();
+
+// Dejar la escena preparada, pero sin iniciar la secuencia al cargar.
+resetScene();
+
+let sequenceStarted = false;
+window.addEventListener('message', (event) => {
+  if (event.data === 'kvolt-start-obras' && !sequenceStarted) {
+    sequenceStarted = true;
+    startSequence();
+  }
+});
 </script>
 </body>
 </html>
