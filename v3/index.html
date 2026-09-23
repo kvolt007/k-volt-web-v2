@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>K-Volt V3 Concept</title>
-<meta name="description" content="Concepto visual K-Volt V3: electricidad para hogares, empresas y climatización residencial en Rosario.">
+<title>K-Volt | Electricidad en Rosario y Gran Rosario</title>
+<meta name="description" content="Servicios eléctricos para hogares, obras nuevas, comercios, PYMEs e industrias en Rosario y Gran Rosario. Instalaciones, mantenimiento, diagnóstico y climatización residencial.">
 <style>
 :root{--y:#ffcc00;--b:#080808;--g:#141414;--w:#f6f6f3;--m:#919191}
 *{box-sizing:border-box}
@@ -563,6 +563,72 @@ footer{padding:45px 5vw;display:flex;justify-content:space-between;gap:20px;colo
 @media(max-width:700px){.coverage-map{min-height:560px}.map-node{font-size:.60rem;padding:7px 10px}}
 @media(max-width:560px){.contactbox{grid-template-columns:1fr}.coverage-map{min-height:500px}}
 
+
+/* Ajustes de usabilidad y accesibilidad */
+a:focus-visible,button:focus-visible{outline:3px solid var(--y);outline-offset:4px}
+.menu-toggle{display:none;width:44px;height:44px;border:1px solid #ffffff1f;border-radius:12px;background:#111;color:#fff;align-items:center;justify-content:center;flex-direction:column;gap:5px;cursor:pointer;padding:0}
+.menu-toggle span{display:block;width:20px;height:2px;background:currentColor;border-radius:99px;transition:transform .25s ease,opacity .25s ease}
+.menu-toggle.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.menu-toggle.open span:nth-child(2){opacity:0}
+.menu-toggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+.whatsapp-float{position:fixed;right:24px;bottom:24px;z-index:40;display:flex;align-items:center;gap:10px;padding:13px 16px;border-radius:999px;background:var(--y);color:#000;font-size:.9rem;font-weight:900;box-shadow:0 14px 42px rgba(0,0,0,.38);border:1px solid rgba(0,0,0,.15)}
+.whatsapp-float:hover{transform:translateY(-2px)}
+.whatsapp-float strong{font-size:1rem}
+
+/* Mejor legibilidad de textos secundarios */
+.kicker,.coverage-kicker{font-size:.8rem}
+.new-build-heading span{font-size:.78rem}
+.energy-head{font-size:.72rem}
+.energy-center .config{font-size:.78rem}
+.energy-subtitle{font-size:.76rem}
+.energy-footer{font-size:.68rem}
+.method-title{font-size:.8rem}
+.coverage-tags span{font-size:.8rem}
+.map-node{font-size:.75rem}
+.worldcopy small{font-size:.78rem;line-height:1.4}
+.worldcopy p,.coverage-copy>p:not(.coverage-kicker),.contact p{font-size:1rem;line-height:1.65}
+
+@media(max-width:900px){
+  header{gap:12px}
+  .menu-toggle{display:flex;flex:0 0 44px}
+  header nav{
+    display:flex;
+    position:absolute;
+    left:18px;
+    right:18px;
+    top:82px;
+    padding:14px;
+    flex-direction:column;
+    gap:4px;
+    background:rgba(10,10,10,.98);
+    border:1px solid #ffffff18;
+    border-radius:18px;
+    box-shadow:0 22px 60px rgba(0,0,0,.55);
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(-10px);
+    transition:opacity .25s ease,transform .25s ease,visibility .25s ease;
+  }
+  header nav.open{opacity:1;visibility:visible;transform:none}
+  header nav a{padding:13px 14px;border-radius:10px;font-size:1rem}
+  header nav a:hover{background:#151515}
+  .pill{margin-left:auto}
+}
+@media(max-width:600px){
+  .whatsapp-float{right:14px;bottom:14px;padding:12px 14px}
+  .whatsapp-float span{font-size:.86rem}
+  .energy-footer{font-size:.62rem;gap:8px}
+  .map-node{font-size:.68rem}
+}
+
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
+  .reveal{opacity:1 !important;transform:none !important}
+  .whatsapp-float:hover{transform:none}
+}
+
 </style>
 </head>
 <body>
@@ -576,7 +642,7 @@ footer{padding:45px 5vw;display:flex;justify-content:space-between;gap:20px;colo
     </div>
     <div class="loader-copy">
       <small>K-VOLT / POWER UP</small>
-      <strong>Arrancando en <span>220V</span></strong>
+      <strong>Energía <span>en marcha</span></strong>
       <p>Diagnóstico · Instalación · Mantenimiento</p>
     </div>
     <div class="loader-line"><i></i></div>
@@ -586,8 +652,9 @@ footer{padding:45px 5vw;display:flex;justify-content:space-between;gap:20px;colo
 
 <header>
   <a class="logo" href="#top"><span class="mark">K</span><span>K-VOLT</span></a>
-  <nav><a href="#hogar">Hogar</a><a href="#obras">Obras nuevas</a><a href="#empresa">Empresa</a><a href="#clima">Climatización</a><a href="#cobertura">Cobertura</a><a href="#contacto">Contacto</a></nav>
+  <nav id="mainNav"><a href="#hogar">Hogar</a><a href="#obras">Obras nuevas</a><a href="#empresa">Empresa</a><a href="#clima">Climatización</a><a href="#cobertura">Cobertura</a><a href="#contacto">Contacto</a></nav>
   <a class="pill" href="#contacto">Hablemos</a>
+  <button class="menu-toggle" id="menuToggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="mainNav"><span></span><span></span><span></span></button>
 </header>
 
 <main id="top">
@@ -734,6 +801,8 @@ footer{padding:45px 5vw;display:flex;justify-content:space-between;gap:20px;colo
 </section>
 </main>
 
+<a class="whatsapp-float" href="https://wa.me/543413217314" target="_blank" rel="noopener" aria-label="Consultar por WhatsApp"><span>WhatsApp</span><strong>↗</strong></a>
+
 <footer><strong>K-VOLT</strong><span>Electricidad · Obras · Empresas · Climatización residencial</span><small>Rosario · Santa Fe</small></footer>
 
 <script>
@@ -741,8 +810,27 @@ window.addEventListener('load', () => {
   const loader = document.getElementById('loader');
   const flash = document.getElementById('flash');
   flash.classList.add('on');
-  setTimeout(() => loader.classList.add('hide'), 1850);
+  setTimeout(() => loader.classList.add('hide'), 1250);
 });
+
+const menuToggle = document.getElementById('menuToggle');
+const mainNav = document.getElementById('mainNav');
+if (menuToggle && mainNav) {
+  const closeMenu = () => {
+    mainNav.classList.remove('open');
+    menuToggle.classList.remove('open');
+    menuToggle.setAttribute('aria-expanded','false');
+    menuToggle.setAttribute('aria-label','Abrir menú');
+  };
+  menuToggle.addEventListener('click', () => {
+    const isOpen = mainNav.classList.toggle('open');
+    menuToggle.classList.toggle('open', isOpen);
+    menuToggle.setAttribute('aria-expanded', String(isOpen));
+    menuToggle.setAttribute('aria-label', isOpen ? 'Cerrar menú' : 'Abrir menú');
+  });
+  mainNav.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+}
 
 const els=[...document.querySelectorAll('.reveal')];
 if('IntersectionObserver'in window){
