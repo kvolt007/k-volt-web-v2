@@ -647,6 +647,7 @@ footer{padding:45px 5vw;display:flex;justify-content:space-between;gap:20px;colo
       <p>De la acometida al hogar: mirá cómo pensamos una instalación desde cero.</p>
     </div>
     <iframe
+      id="obrasAnimation"
       src="obras-nuevas.html"
       title="Animación K-Volt de una instalación eléctrica desde la acometida hasta el hogar"
       loading="lazy">
@@ -751,6 +752,39 @@ if('IntersectionObserver'in window){
 
 const hev=document.getElementById('heroEnergyValue'),het=document.getElementById('heroEnergyTag'),hec=document.getElementById('heroEnergyConfig'),hes=document.getElementById('heroEnergySubtitle'),hef=document.getElementById('heroEnergyFlash'),hw1=document.getElementById('heroWave1'),hw2=document.getElementById('heroWave2'),hw3=document.getElementById('heroWave3');
 if(hev){let tri=false;const flash=()=>{hef.classList.remove('on');void hef.offsetWidth;hef.classList.add('on')};const mono=()=>{tri=false;hev.textContent='220';het.textContent='MONOFÁSICA';hec.textContent='MONOFÁSICA';hes.innerHTML='<strong>HOGAR · COMERCIO</strong> · ENERGÍA ESTABLE';hw1.classList.add('active');hw2.classList.add('active');hw3.classList.remove('active');flash()};const three=()=>{tri=true;hev.textContent='380';het.textContent='TRIFÁSICA';hec.textContent='TRIFÁSICA';hes.innerHTML='<strong>EMPRESA · INDUSTRIA</strong> · ENERGÍA ESTABLE';hw1.classList.add('active');hw2.classList.add('active');hw3.classList.add('active');flash()};mono();setInterval(()=>tri?mono():three(),3000)}
+
+
+// Iniciar la animación de Obras Nuevas recién cuando el usuario llega a esa sección.
+const obrasFrame = document.getElementById('obrasAnimation');
+if (obrasFrame) {
+  let obrasStarted = false;
+  const startObrasAnimation = () => {
+    if (obrasStarted) return;
+    obrasStarted = true;
+    if (obrasFrame.contentWindow) {
+      obrasFrame.contentWindow.postMessage('kvolt-start-obras', '*');
+    }
+  };
+
+  const obrasObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && entry.intersectionRatio >= 0.18) {
+        // Espera breve para que el usuario alcance a ver el inicio de la secuencia.
+        setTimeout(startObrasAnimation, 180);
+        obrasObserver.disconnect();
+      }
+    });
+  }, { threshold: [0.18] });
+
+  obrasObserver.observe(obrasFrame);
+
+  // Si el iframe termina de cargar justo cuando ya está visible, reintentar el disparo.
+  obrasFrame.addEventListener('load', () => {
+    const rect = obrasFrame.getBoundingClientRect();
+    const visible = rect.top < window.innerHeight && rect.bottom > 0;
+    if (visible) setTimeout(startObrasAnimation, 180);
+  });
+}
 
 </script>
 </body>
